@@ -1,0 +1,58 @@
+.left-side-drawer{
+  position: fixed;
+  width: var(--drawer-width);
+  height: 100vh;
+  border-right: 1px solid var(--border-color);
+  background: var(--background);
+  z-index: 70;
+  transition: all .2s ease-in-out;
+}
+/* Header */
+.drawer-header{
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px 0 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Navigation */
+.drawer-nav-container{
+  padding: 10px 10px;
+}
+.drawer-nav-container > * {
+  display: block;
+}
+.drawer-nav-item {
+    display: flex;
+    flex-direction: row;
+    cursor: default;
+    padding: 10px 4px;
+    align-items: center;
+    border-radius: 6px;
+    text-decoration: none;
+}
+.drawer-nav-item:hover{
+    background-color: var(--hover-color);
+    text-decoration: underline;
+}
+.drawer-nav-item > .nav-btn-icon{
+    width: 28px;
+    display: flex;
+    align-items: center;
+}
+.drawer-nav-item > span{
+    display: block;
+    font-size: medium;
+    padding-left: 6px;
+}
+/* Backdrop */
+.backdrop {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 65;
+      opacity: 0; visibility: hidden; transition: opacity .2s ease, visibility .2s ease;
+    }
+body[data-drawer="open"] .backdrop { 
+    opacity: 1; 
+    visibility: visible; 
+}
