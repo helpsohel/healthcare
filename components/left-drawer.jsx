@@ -1,6 +1,17 @@
 import '@/styles/drawer.css'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 export default function LeftDrawer(props){
+    let currentPath = usePathname();
+    const [currentTab, changeTab] = useState(currentPath);
+    
+    function drawerNavigator(){
+        props.setDrawerStatus('close')
+    }
+    useEffect( ()=>{
+        changeTab(currentPath)
+    }, [currentPath])
     return (
         <>
             <aside className="left-side-drawer">
@@ -13,13 +24,13 @@ export default function LeftDrawer(props){
                     </button>
                 </div>
                 <nav className="drawer-nav-container">
-                    <Link href="/" className='drawer-nav-item' onClick={ ()=>{props.setDrawerStatus('close')}}>
+                    <Link href="/" className={`drawer-nav-item ${currentTab === "/" ? "selected-drawer-item":""}`} onClick={ ()=>{drawerNavigator()}}>
                         <div className='nav-btn-icon'>
                             <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24"><path fill="currentColor" d="M12 22c1.1 0 2-.9 2-2h-4a2 2 0 0 0 2 2m6-6v-5c0-3.07-1.64-5.64-4.5-6.32V2.5h-3v2.18C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1z"/></svg>
                         </div>
                         <span>Home</span>
                     </Link>
-                    <Link className='drawer-nav-item' href='/dashboard' onClick={ ()=>{props.setDrawerStatus('close')}}>
+                    <Link href='/dashboard' className={`drawer-nav-item ${currentTab === "/dashboard" ? "selected-drawer-item":""}`} onClick={ ()=>{drawerNavigator()}}>
                         <div className='nav-btn-icon'>
                             <svg fill="currentColor" width="100%" height="100%" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M7.004 23.087l7.08-7.081-7.07-7.071L8.929 7.02l7.067 7.069L23.084 7l1.912 1.913-7.089 7.093 7.075 7.077-1.912 1.913-7.074-7.073L8.917 25z"/></svg>
                         </div>

@@ -1,0 +1,15 @@
+.login-btn, .login-btn a{
+    width: fit-content;
+    padding: 0 min(2vw, 1rem);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    background-color: rgb(12, 121, 237);
+    border: 0;
+    height: 65%;
+    border-radius: 6px;
+    color: white;
+}
+.login-btn:hover {
+    opacity: 0.85;
+}

@@ -1,3 +1,5 @@
+import Link from "next/link"
+import '@/styles/header.css'
 
 export default function Header(props){
     return(
@@ -20,7 +22,9 @@ export default function Header(props){
                 <button className="btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24"><path fill="currentColor" d="M12 22c1.1 0 2-.9 2-2h-4a2 2 0 0 0 2 2m6-6v-5c0-3.07-1.64-5.64-4.5-6.32V2.5h-3v2.18C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1z"/></svg>
                 </button>
-                <a>Profile</a>
+                <button className="login-btn">
+                    <Link href="/login">Log in</Link>
+                </button>
             </nav>
         </header>
     )
