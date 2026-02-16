@@ -1,7 +1,22 @@
 import Link from "next/link"
 import '@/styles/header.css'
 
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+
 export default function Header(props){
+    const { theme, setTheme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  // Prevent hydration mismatch
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
+  const currentTheme = resolvedTheme; // handles system mode
+
     return(
         <header className="header">
             <nav className="header-nav">
@@ -21,6 +36,11 @@ export default function Header(props){
             <nav className="header-nav">
                 <button className="btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24"><path fill="currentColor" d="M12 22c1.1 0 2-.9 2-2h-4a2 2 0 0 0 2 2m6-6v-5c0-3.07-1.64-5.64-4.5-6.32V2.5h-3v2.18C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1z"/></svg>
+                </button>
+                <button onClick={ ()=>{
+                    setTheme(currentTheme === "dark" ? "light" : "dark")
+                }} className="btn">
+                    {currentTheme === "dark" ? "🌞" : "🌙"}
                 </button>
                 <button className="login-btn">
                     <Link href="/login">Log in</Link>

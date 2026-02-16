@@ -5,17 +5,27 @@ import Header from "@/components/header";
 import LeftDrawer from "@/components/left-drawer";
 import MainContent from "@/components/main-content";
 import Footer from "@/components/footer";
+import { ThemeProvider } from "next-themes";
+
 
 export default function HomePage({children}){
     const [drawerStatus, setDrawerStatus] = useState('close');
     
     return (
-        <html>
+        <html lang="en" suppressHydrationWarning>
             <body data-drawer={drawerStatus}>
-                <Header setDrawerStatus={()=>{setDrawerStatus('open')}}/>
-                <LeftDrawer setDrawerStatus = {()=>{setDrawerStatus('close')}} />
-                <MainContent content={children}/>
-                <Footer/>
+                <ThemeProvider 
+                    attribute="data-theme"
+                    defaultTheme="system"
+                    enableSystem={true}
+                    disableTransitionOnChange>
+
+                    <Header setDrawerStatus={()=>{setDrawerStatus('open')}}/>
+                    <LeftDrawer setDrawerStatus = {()=>{setDrawerStatus('close')}} />
+                    <MainContent content={children}/>
+                    <Footer/>
+                </ThemeProvider>
+                
             </body>
         </html>
     );
